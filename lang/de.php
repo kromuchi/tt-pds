@@ -37,5 +37,10 @@ $PTG_lng['long_help_text']		= '<p>Auf dieser Seite findest du die Downloadlinks 
 	<p>Und nun viel Spaß beim herunterladen und ansehen. </p>';
 	
 $PTG_lng['admin_allcodes']		= 'Zugriffscodes';
+$PTG_lng['vfalkenhahn']			= 'vfalkenhahn.de';
+$PTG_lng['error_403']			= 'Die angeforderte URL ist geschützt:';
+$PTG_lng['error_404']			= 'Die angeforderte URL wurde nicht gefunden:';
+$PTG_lng['error_500']			= 'Unerwarteter Serverfehler:';
+$PTG_lng['error_back']			= 'Zurück zur Homepage:';
 
 ?>
