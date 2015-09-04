@@ -38,5 +38,10 @@ $PTG_lng['long_help_text']		= '<p>On this page you can find the download links f
 	<p>And now enjoy watching the pictures.</p>';
 	
 $PTG_lng['admin_allcodes']		= 'Access codes';
+$PTG_lng['vfalkenhahn'] 		= 'vfalkenhahn.de';
+$PTG_lng['error_403']			= 'The URL you requested is protected:';
+$PTG_lng['error_404']			= 'The URL you requested is not found:';
+$PTG_lng['error_500']			= 'The server experienced an unexpected error:';
+$PTG_lng['error_back']			= 'Go back to the main homepage:';
 
 ?>
