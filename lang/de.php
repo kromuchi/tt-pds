@@ -37,5 +37,13 @@ $TTPDS_lng['long_help_text']		= '<p>Auf dieser Seite findest du die Downloadlink
 	<p>Und nun viel Spaß beim herunterladen und ansehen. </p>';
 	
 $TTPDS_lng['admin_allcodes']		= 'Zugriffscodes';
+<<<<<<< HEAD
+=======
+$TTPDS_lng['vfalkenhahn'] 		= 'vfalkenhahn.de';
+$TTPDS_lng['error_403']			= 'Die angeforderte URL ist geschützt:';
+$TTPDS_lng['error_404']			= 'Die angeforderte URL wurde nicht gefunden:';
+$TTPDS_lng['error_500']			= 'Unerwarteter Serverfehler:';
+$TTPDS_lng['error_back']			= 'Zurück zur Homepage:';
+>>>>>>> htaccess
 
 ?>

@@ -13,11 +13,14 @@ $lang = (isset($_GET["lang"]) ? $_GET["lang"] : "");
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
 switch($lang){
 	case 'de':
-		include('lang/de.php');
+		include (TTPDS_DIR . 'lang/de.php');
 		break;
 	case 'en':
-		include('lang/en.php');
+		include (TTPDS_DIR . 'lang/en.php');
 		break;
+	default: // 'en'
+		include (TTPDS_DIR . 'lang/en.php');
+		$lang = 'en';
 }
 
 include($TTPDS_datafolder . '/'. 'data.php');
@@ -68,12 +71,14 @@ if($t == 'help'){
 	if($mode == 'default' && $count_galleries == 1) $mode = $first_t;
 }
 
+# Set extra copyright, empty by default
+$TTPDS_extra_copyright = ''
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $TTPDS_lng['xml-lang']; ?>" lang="<?php echo $TTPDS_lng['lang']; ?>">  
 <head><title><?php echo $TTPDS_lng['title']; ?></title>
-<!--<link rel='shortcut icon' href='http://kyblog.de/wp-content/themes/kyblogDE/favicon.png' />-->
 <link rel='stylesheet' type='text/css' href='template/master.css'/>
 <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
 </head><body><div class='page_margins'><div class='page'>
@@ -171,7 +176,8 @@ echo("<div class='hspacer'>&nbsp;</div><span class='corners-bottom'><span></span
 ?>
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
-&copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : TTPDS_ROOT); echo $cr;?>"><?php echo $cr;?></a> &ndash; <?php echo("<a href='?".$linkstr."&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
+&copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : $TTPDS_lng['vfalkenhahn']); echo $cr;?>"><?php echo $cr;?></a> &ndash; <?php echo("<a href='?".$linkstr."&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div></body></html>
+
