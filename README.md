@@ -16,4 +16,5 @@ customize via /data/data.php
 ## Changelog
 
 2015-09-04 first release
+
 2015-09-04 htaccess file added / folder structure enhanced
