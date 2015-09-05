@@ -1,9 +1,9 @@
-<?php if(!defined('PTG_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
+<?php if(!defined('TTPDS_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
 function getFiles($relpath){
 	if(is_dir($relpath)){
 		$files = array();
-		$abspath = PTG_DIR ."/". $relpath;
+		$abspath = TTPDS_DIR ."/". $relpath;
 		
 		$hndlProcessingDir = opendir($relpath);			
 		if($hndlProcessingDir) {
@@ -26,7 +26,7 @@ function sendFile($relpath, $fileindex){
 	$filelist = getFiles($relpath);
 	$filename = $filelist[$fileindex]['name'];
 	
-	$strFilepath = PTG_DIR ."/". $relpath ."/". $filename;
+	$strFilepath = TTPDS_DIR ."/". $relpath ."/". $filename;
 	
 	//$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type ala mimetype extension
 	//$mime = finfo_file($finfo, $strFilepath);

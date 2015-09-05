@@ -1,4 +1,4 @@
-<?php if(!defined('PTG_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
+<?php if(!defined('TTPDS_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
 /*
   determine which language out of an available set the user prefers most

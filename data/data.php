@@ -1,6 +1,6 @@
-<?php if(!defined('PTG_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
+<?php if(!defined('TTPDS_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
-$PTG_galleries = array(
+$TTPDS_galleries = array(
 
 	/* // E X S A M P L E   S T R U C T U R E
 
