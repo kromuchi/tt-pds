@@ -57,8 +57,9 @@ foreach($TTPDS_galleries as $key => $value){
 		$TTPDS_galleries[$key]["access"] = 1;
 		if($t == $key){
 			$mode = $key;
-			if(is_numeric($_GET["f"])){
-				sendFile($TTPDS_datafolder . '/' . $TTPDS_galleries[$mode]["folder"], $_GET["f"]);
+			$f = getarg('f');
+			if(is_numeric($f )){
+				sendFile($TTPDS_datafolder . '/' . $TTPDS_galleries[$mode]["folder"], $f );
 			}
 		}
 	}
@@ -147,7 +148,7 @@ if($mode != "default" && $mode != "disclaimer" && $mode != "admin_allcodes"){
 	}
 	echo($TTPDS_lng['help_pre'] . " <a href='?".$linkstr."&t=help'>".$TTPDS_lng['help_lnk']."</a> ".$TTPDS_lng['help_post']."</p>");
 			
-	$files = getFiles($TTPDS_datafolder . $TTPDS_galleries[$mode]["folder"]);
+	$files = getFiles($TTPDS_datafolder . '/' . $TTPDS_galleries[$mode]["folder"]);
 	if($files === FALSE){
 		echo("<p>" . $TTPDS_lng['fatal'] . "</p>");
 	}else if(empty($files)){

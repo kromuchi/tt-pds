@@ -3,7 +3,7 @@
 function getFiles($relpath){
 	if(is_dir($relpath)){
 		$files = array();
-		$abspath = TTPDS_DIR ."/". $relpath;
+		$abspath = TTPDS_DIR . $relpath;
 		
 		$hndlProcessingDir = opendir($relpath);			
 		if($hndlProcessingDir) {
@@ -26,15 +26,15 @@ function sendFile($relpath, $fileindex){
 	$filelist = getFiles($relpath);
 	$filename = $filelist[$fileindex]['name'];
 	
-	$strFilepath = TTPDS_DIR ."/". $relpath ."/". $filename;
+	$strFilepath = TTPDS_DIR . $relpath ."/". $filename;
 	
-	//$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type ala mimetype extension
-	//$mime = finfo_file($finfo, $strFilepath);
-	//finfo_close($finfo);
+	$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type extension
+	$mime = finfo_file($finfo, $strFilepath);
+	finfo_close($finfo);
 
 	if(file_exists($strFilepath)) {
 		header('Content-Description: File Transfer');
-		header('Content-Type: application); //'.$mime);
+		header('Content-Type: ' . $mime);
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
