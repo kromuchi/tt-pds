@@ -1,10 +1,5 @@
 <?php if(!defined('PTG_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
-// M A I N   S E T T I N G S
-
-$PTG_masterkey 		= "somerandombutcomplexmasterkey"; // Insert master key here to call admin interface using ?admin=getallaccesscodes&mkey=somerandombutcomplexmasterkey
-$PTG_keys_maxlen 	= 50; // Truncates the $_GET["acc"] variable to prevent random attacs
-
 $PTG_galleries = array(
 
 	/* // E X S A M P L E   S T R U C T U R E
