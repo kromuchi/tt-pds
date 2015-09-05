@@ -38,13 +38,10 @@ $TTPDS_lng['long_help_text']		= '<p>On this page you can find the download links
 	<p>And now enjoy watching the pictures.</p>';
 	
 $TTPDS_lng['admin_allcodes']		= 'Access codes';
-<<<<<<< HEAD
-=======
 $TTPDS_lng['vfalkenhahn'] 		= 'vfalkenhahn.de';
 $TTPDS_lng['error_403']			= 'The URL you requested is protected:';
 $TTPDS_lng['error_404']			= 'The URL you requested is not found:';
 $TTPDS_lng['error_500']			= 'The server experienced an unexpected error:';
 $TTPDS_lng['error_back']			= 'Go back to the main homepage:';
->>>>>>> htaccess
 
 ?>

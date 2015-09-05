@@ -23,7 +23,7 @@ switch($lang){
 		$lang = 'en';
 }
 
-include($TTPDS_datafolder . '/'. 'data.php');
+include($TTPDS_datafolder . '/' . 'data.php');
 asort($TTPDS_galleries);
 $mode = "default";
 if(!isset($TTPDS_keys_maxlen)){ // if not set by user
@@ -70,9 +70,6 @@ if($t == 'help'){
 }else{
 	if($mode == 'default' && $count_galleries == 1) $mode = $first_t;
 }
-
-# Set extra copyright, empty by default
-$TTPDS_extra_copyright = ''
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -176,8 +173,7 @@ echo("<div class='hspacer'>&nbsp;</div><span class='corners-bottom'><span></span
 ?>
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
-&copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : $TTPDS_lng['vfalkenhahn']); echo $cr;?>"><?php echo $cr;?></a> &ndash; <?php echo("<a href='?".$linkstr."&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
+&copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &ndash; <?php echo("<a href='?".$linkstr."&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div></body></html>
-
