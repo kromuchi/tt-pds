@@ -1,19 +1,15 @@
 <?php
-$subfolder = "data/"; 
 define('PTG_URL',$_SERVER['HTTP_HOST'] );
 define('PTG_DIR',$_SERVER['DOCUMENT_ROOT'] );
 $hostinfo = explode('.',$_SERVER['HTTP_HOST']); 
-define('PTG_ROOT',$hostinfo[1].".".$hostinfo[2]);
+define('PTG_ROOT',($hostinfo[0]=="localhost" ? $hostinfo[0] : $hostinfo[1].".".$hostinfo[2]));
+include("./config.php");
+include("./inc/lang.php");
+include("./inc/files.php");
 
-/** available languages **/
-$langs = array(
-        'en', //default
-        'de',
-);
-asort($langs);
-
+asort($PTG_langs);
 $lang = $_GET["lang"];
-if($lang == "" || !in_array($lang, $langs)) $lang = prefered_language($langs);
+if($lang == "" || !in_array($lang, $PTG_langs)) $lang = prefered_language($PTG_langs);
 switch($lang){
 	case 'de':
 		include('lang/de.php');
@@ -23,7 +19,8 @@ switch($lang){
 		break;
 }
 
-include($subfolder . 'data.php');
+include($PTG_datafolder . '/'. 'data.php');
+asort($PTG_galleries);
 $mode = "default";
 if(!isset($PTG_keys_maxlen)){ // if not set by user
 	$PTG_keys_maxlen = 0;
@@ -55,7 +52,7 @@ foreach($PTG_galleries as $key => $value){
 		if($_GET["t"] == $key){
 			$mode = $key;
 			if(is_numeric($_GET["f"])){
-				sendFile($subfolder . $PTG_galleries[$mode]["folder"], $_GET["f"]);
+				sendFile($PTG_datafolder . '/' . $PTG_galleries[$mode]["folder"], $_GET["f"]);
 			}
 		}
 	}
@@ -84,7 +81,7 @@ if($_GET["t"] == 'help'){
 	<div class='caption'><?php echo $PTG_lng['title']; ?><div class="right">
 		<?php
 			$lngctr = 1;
-			foreach($langs as $val){
+			foreach($PTG_langs as $val){
 				if($lngctr > 1){
 					echo " | ";
 				}
@@ -145,7 +142,7 @@ if($mode != "default" && $mode != "disclaimer" && $mode != "admin_allcodes"){
 	}
 	echo($PTG_lng['help_pre'] . " <a href='?".$linkstr."&t=help'>".$PTG_lng['help_lnk']."</a> ".$PTG_lng['help_post']."</p>");
 			
-	$files = getFiles($subfolder . $PTG_galleries[$mode]["folder"]);
+	$files = getFiles($PTG_datafolder . $PTG_galleries[$mode]["folder"]);
 	if($files === FALSE){
 		echo("<p>" . $PTG_lng['fatal'] . "</p>");
 	}else if(empty($files)){
@@ -175,117 +172,3 @@ echo("<div class='hspacer'>&nbsp;</div><span class='corners-bottom'><span></span
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div></body></html>
-<?
-
-
-function getFiles($relpath){
-	if(is_dir($relpath)){
-		$files = array();
-		$abspath = PTG_DIR ."/". $relpath;
-		
-		$hndlProcessingDir = opendir($relpath);			
-		if($hndlProcessingDir) {
-			while(($strFile = readdir($hndlProcessingDir)) != False) {
-				if(file_exists($relpath ."/". $strFile)){
-					if($strFile != "." and $strFile != ".." and $strFile != ".htaccess" and filetype($abspath."/".$strFile) != "dir" and strpos($strFile, ".bak") === false) {
-						array_push($files, array('name' => $strFile, 'size' => filesize($abspath ."/". $strFile)));
-					}
-				}
-			}
-		}		
-		closedir($hndlProcessingDir);
-		sort($files);
-		return($files);
-	}
-	return false;
-}
-
-function sendFile($relpath, $fileindex){
-	$filelist = getFiles($relpath);
-	$filename = $filelist[$fileindex]['name'];
-	
-	$strFilepath = PTG_DIR ."/". $relpath ."/". $filename;
-	
-	//$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type ala mimetype extension
-	//$mime = finfo_file($finfo, $strFilepath);
-	//finfo_close($finfo);
-
-	if(file_exists($strFilepath)) {
-		header('Content-Description: File Transfer');
-		header('Content-Type: application); //'.$mime);
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-		header('Content-Transfer-Encoding: binary');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Pragma: public');
-		header('Content-Length: ' . $filelist[$fileindex]['size']);
-		
-		readfile($strFilepath);
-	}
-}
-
-function formatBytes($bytes, $precision = 2) {
-	$base = 1024; // 1000
-	
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-  
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log($base));
-    $pow = min($pow, count($units) - 1);
-  
-    $bytes /= pow($base, $pow);
-  
-    return round($bytes, $precision) . ' ' . $units[$pow];
-} 
-
-/*
-  determine which language out of an available set the user prefers most
- 
-  $available_languages        	array with language-tag-strings (must be lowercase) that are available
-  $http_accept_language    		a HTTP_ACCEPT_LANGUAGE string (read from $_SERVER['HTTP_ACCEPT_LANGUAGE'] if left out)
-*/
-function prefered_language ($available_languages,$http_accept_language="auto") {
-    // if $http_accept_language was left out, read it from the HTTP-Header
-    if ($http_accept_language == "auto") $http_accept_language = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-
-    // standard  for HTTP_ACCEPT_LANGUAGE is defined under
-    // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
-    // pattern to find is therefore something like this:
-    //    1#( language-range [ ";" "q" "=" qvalue ] )
-    // where:
-    //    language-range  = ( ( 1*8ALPHA *( "-" 1*8ALPHA ) ) | "*" )
-    //    qvalue         = ( "0" [ "." 0*3DIGIT ] )
-    //            | ( "1" [ "." 0*3("0") ] )
-    preg_match_all("/([[:alpha:]]{1,8})(-([[:alpha:]|-]{1,8}))?" .
-                   "(\s*;\s*q\s*=\s*(1\.0{0,3}|0\.\d{0,3}))?\s*(,|$)/i",
-                   $http_accept_language, $hits, PREG_SET_ORDER);
-
-    // default language (in case of no hits) is the first in the array
-    $bestlang = $available_languages[0];
-    $bestqval = 0;
-
-    foreach ($hits as $arr) {
-        // read data from the array of this hit
-        $langprefix = strtolower ($arr[1]);
-        if (!empty($arr[3])) {
-            $langrange = strtolower ($arr[3]);
-            $language = $langprefix . "-" . $langrange;
-        }
-        else $language = $langprefix;
-        $qvalue = 1.0;
-        if (!empty($arr[5])) $qvalue = floatval($arr[5]);
-     
-        // find q-maximal language 
-        if (in_array($language,$available_languages) && ($qvalue > $bestqval)) {
-            $bestlang = $language;
-            $bestqval = $qvalue;
-        }
-        // if no direct hit, try the prefix only but decrease q-value by 10% (as http_negotiate_language does)
-        else if (in_array($languageprefix,$available_languages) && (($qvalue*0.9) > $bestqval)) {
-            $bestlang = $languageprefix;
-            $bestqval = $qvalue*0.9;
-        }
-    }
-    return $bestlang;
-}
-?>
