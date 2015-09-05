@@ -6,9 +6,10 @@ define('TTPDS_ROOT',($hostinfo[0]=="localhost" ? $hostinfo[0] : $hostinfo[1]."."
 include("./config.php");
 include("./inc/lang.php");
 include("./inc/files.php");
+include("./inc/browserargs.php");
 
 asort($TTPDS_langs);
-$lang = $_GET["lang"];
+$lang = (isset($_GET["lang"]) ? $_GET["lang"] : "");
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
 switch($lang){
 	case 'de':
@@ -29,8 +30,9 @@ if(!isset($TTPDS_keys_maxlen)){ // if not set by user
 	}
 	$TTPDS_keys_maxlen = $TTPDS_keys_maxlen*1.1; // may be a little bit longer to allow random bits
 }
-$acc = ($TTPDS_keys_maxlen>0 ? substr($_GET["acc"],0,$TTPDS_keys_maxlen) : $_GET["acc"]); // poor savety to prevent long random 2000-character attacs
-if($_GET["admin"] == "getallaccesscodes" && $_GET["mkey"] == $TTPDS_masterkey){
+$acc = getarg("acc");
+$acc = ($TTPDS_keys_maxlen>0 ? substr($acc,0,$TTPDS_keys_maxlen) : $acc); // poor savety to prevent long random 2000-character attacs
+if(getarg("admin") == "getallaccesscodes" && getarg("mkey") == $TTPDS_masterkey){
 	$mode = "admin_allcodes";
 	$masterkey = '';
 	foreach($TTPDS_galleries as $key => $value){
@@ -42,6 +44,7 @@ if($_GET["admin"] == "getallaccesscodes" && $_GET["mkey"] == $TTPDS_masterkey){
 $linkstr = "lang=" . $lang . "&acc=" . $acc;
 $count_galleries = 0;
 $first_t = '';
+$t = getarg('t');
 foreach($TTPDS_galleries as $key => $value){
 	if(strpos($acc, $value["key"]) !== false){
 		$count_galleries = $count_galleries + 1;
@@ -49,7 +52,7 @@ foreach($TTPDS_galleries as $key => $value){
 			$first_t = $key;
 		}
 		$TTPDS_galleries[$key]["access"] = 1;
-		if($_GET["t"] == $key){
+		if($t == $key){
 			$mode = $key;
 			if(is_numeric($_GET["f"])){
 				sendFile($TTPDS_datafolder . '/' . $TTPDS_galleries[$mode]["folder"], $_GET["f"]);
@@ -57,9 +60,9 @@ foreach($TTPDS_galleries as $key => $value){
 		}
 	}
 }
-if($_GET["t"] == 'help'){
+if($t == 'help'){
 	$mode = 'default';
-}else if($_GET["t"] == "disclaimer") {
+}else if($t == "disclaimer") {
 	$mode = "disclaimer";
 }else{
 	if($mode == 'default' && $count_galleries == 1) $mode = $first_t;

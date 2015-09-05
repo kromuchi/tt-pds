@@ -25,8 +25,8 @@ function prefered_language ($available_languages,$http_accept_language="auto") {
     // default language (in case of no hits) is the first in the array
     $bestlang = $available_languages[0];
     $bestqval = 0;
-
-    foreach ($hits as $arr) {
+	
+	foreach ($hits as $arr) {
         // read data from the array of this hit
         $langprefix = strtolower ($arr[1]);
         if (!empty($arr[3])) {
@@ -43,8 +43,8 @@ function prefered_language ($available_languages,$http_accept_language="auto") {
             $bestqval = $qvalue;
         }
         // if no direct hit, try the prefix only but decrease q-value by 10% (as http_negotiate_language does)
-        else if (in_array($languageprefix,$available_languages) && (($qvalue*0.9) > $bestqval)) {
-            $bestlang = $languageprefix;
+        else if (in_array($langprefix,$available_languages) && (($qvalue*0.9) > $bestqval)) {
+            $bestlang = $langprefix;
             $bestqval = $qvalue*0.9;
         }
     }
