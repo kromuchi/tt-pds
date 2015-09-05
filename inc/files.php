@@ -8,9 +8,9 @@ function getFiles($relpath){
 		$hndlProcessingDir = opendir($relpath);			
 		if($hndlProcessingDir) {
 			while(($strFile = readdir($hndlProcessingDir)) != False) {
-				if(file_exists($relpath ."/". $strFile)){
-					if($strFile != "." and $strFile != ".." and $strFile != ".htaccess" and filetype($abspath."/".$strFile) != "dir" and strpos($strFile, ".bak") === false) {
-						array_push($files, array('name' => $strFile, 'size' => filesize($abspath ."/". $strFile)));
+				if(file_exists($relpath . "/" . $strFile)){
+					if($strFile != "." and $strFile != ".." and $strFile != ".htaccess" and filetype($abspath . "/" . $strFile) != "dir" and strpos($strFile, ".bak") === false) {
+						array_push($files, array('name' => $strFile, 'size' => filesize($abspath . "/" . $strFile)));
 					}
 				}
 			}
@@ -26,7 +26,7 @@ function sendFile($relpath, $fileindex){
 	$filelist = getFiles($relpath);
 	$filename = $filelist[$fileindex]['name'];
 	
-	$strFilepath = TTPDS_DIR . $relpath ."/". $filename;
+	$strFilepath = TTPDS_DIR . $relpath . "/" . $filename;
 	
 	$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type extension
 	$mime = finfo_file($finfo, $strFilepath);
@@ -35,7 +35,7 @@ function sendFile($relpath, $fileindex){
 	if(file_exists($strFilepath)) {
 		header('Content-Description: File Transfer');
 		header('Content-Type: ' . $mime);
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -59,6 +59,5 @@ function formatBytes($bytes, $precision = 2) {
   
     return round($bytes, $precision) . ' ' . $units[$pow];
 } 
-
 
 ?>

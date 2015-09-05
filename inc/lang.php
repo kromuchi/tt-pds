@@ -51,5 +51,4 @@ function prefered_language ($available_languages,$http_accept_language="auto") {
     return $bestlang;
 }
 
-
 ?>
