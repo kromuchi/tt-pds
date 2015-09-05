@@ -1,26 +1,26 @@
-<?php if(!defined('PTG_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
+<?php if(!defined('TTPDS_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
 /** Deutsche Sprachdatei **/
 
-$PTG_lng['xml-lang']			= 'de';
-$PTG_lng['lang']				= 'de';
-$PTG_lng['title']				= 'Photodownload';
-$PTG_lng['title_home']			= 'Willkommen | Hilfe';
-$PTG_lng['title_piclist']		= 'Photos:';
-$PTG_lng['more_title']			= 'Links';
-$PTG_lng['more_vfalkenhahn']	= 'Meine Photo-Homepage';
-$PTG_lng['error_key']			= 'Dein Zugriffscode ist falsch. Du kannst keine Gallery sehen. Bitte wende dich an den zuständigen Administrator. Vielen Dank.';
-$PTG_lng['error_files']			= 'Leider sind keine Dateien in dieser Gallery vorhanden. Bitte versuche es zu einem späteren Zeitpunkt nocheinmal. Vielen Dank.';
-$PTG_lng['fatal']				= 'Fehler im System. Bitte wähle eine andere Gallery aus und benachrichtige den zuständigen Administrator über diesen Lapsus. Vielen Dank.';
-$PTG_lng['nopass']				= 'Für diese Dateien gibt es kein Passwort.';
-$PTG_lng['pass_hint']			= 'Das Passwort zum Entpacken der unten aufgelisteten Dateien lautet';
-$PTG_lng['help_pre']			= 'Wenn du nicht weißt, was du mit den herunterladenen Dateien machen sollst, schau bitte in der';
-$PTG_lng['help_lnk']			= 'Hilfe';
-$PTG_lng['help_post']			= 'nach.';
-$PTG_lng['title_disclaimer']	= 'Impressum';
-$PTG_lng['disclaimer']			= 'Diese Seite ist nur für ausgewählte Personen und nicht für den öffentlichen Zugriff bestimmt und hat deshalb keinen eigenen Disclaimer.';
-$PTG_lng['back']				= 'zurück';
-$PTG_lng['long_help_text']		= '<p>Auf dieser Seite findest du die Downloadlinks für die Photos. Außerdem ist hier auch eine <b>ausführliche Anleitung für Jedermann</b>. Am Besten gehst du einfach <b>Schritt für Schritt</b> vor (wenn du keine Ahnung hast):</p>
+$TTPDS_lng['xml-lang']			= 'de';
+$TTPDS_lng['lang']				= 'de';
+$TTPDS_lng['title']				= 'Photodownload';
+$TTPDS_lng['title_home']			= 'Willkommen | Hilfe';
+$TTPDS_lng['title_piclist']		= 'Photos:';
+$TTPDS_lng['more_title']			= 'Links';
+$TTPDS_lng['more_vfalkenhahn']	= 'Meine Photo-Homepage';
+$TTPDS_lng['error_key']			= 'Dein Zugriffscode ist falsch. Du kannst keine Gallery sehen. Bitte wende dich an den zuständigen Administrator. Vielen Dank.';
+$TTPDS_lng['error_files']			= 'Leider sind keine Dateien in dieser Gallery vorhanden. Bitte versuche es zu einem späteren Zeitpunkt nocheinmal. Vielen Dank.';
+$TTPDS_lng['fatal']				= 'Fehler im System. Bitte wähle eine andere Gallery aus und benachrichtige den zuständigen Administrator über diesen Lapsus. Vielen Dank.';
+$TTPDS_lng['nopass']				= 'Für diese Dateien gibt es kein Passwort.';
+$TTPDS_lng['pass_hint']			= 'Das Passwort zum Entpacken der unten aufgelisteten Dateien lautet';
+$TTPDS_lng['help_pre']			= 'Wenn du nicht weißt, was du mit den herunterladenen Dateien machen sollst, schau bitte in der';
+$TTPDS_lng['help_lnk']			= 'Hilfe';
+$TTPDS_lng['help_post']			= 'nach.';
+$TTPDS_lng['title_disclaimer']	= 'Impressum';
+$TTPDS_lng['disclaimer']			= 'Diese Seite ist nur für ausgewählte Personen und nicht für den öffentlichen Zugriff bestimmt und hat deshalb keinen eigenen Disclaimer.';
+$TTPDS_lng['back']				= 'zurück';
+$TTPDS_lng['long_help_text']		= '<p>Auf dieser Seite findest du die Downloadlinks für die Photos. Außerdem ist hier auch eine <b>ausführliche Anleitung für Jedermann</b>. Am Besten gehst du einfach <b>Schritt für Schritt</b> vor (wenn du keine Ahnung hast):</p>
 
 	<h2>Photos herunterladen</h2>
 	<p>Abhängig davon, wie dein Zugriffslink lautet, kannst du links auf verschiedene Rubriken zugreifen. Dort finden sich die Links für die Photoarchive, getrennt nach Photograf. Lade einfach die gewünschten Dateien (von einem Photografen musst du immer alle Dateien in das gleiche Verzeichnis runterladen, um die Photos entpacken zu können).</p>
@@ -36,11 +36,11 @@ $PTG_lng['long_help_text']		= '<p>Auf dieser Seite findest du die Downloadlinks 
 	<p>Die Photos sind so umbenannt, dass du alle Photos einer Gallerie in einen Ordner entpacken kannst. So sind die Photos automatisch chronologisch sortiert (wenn du sie dir nach Dateinamen sortiert anzeigen lässt). Dies ist z.B. geeignet für eine Diashow. Damit man immer noch sieht, von wem die Photos sind, steht der Name des Photografen am Ende des Dateinamens.</p>
 	<p>Und nun viel Spaß beim herunterladen und ansehen. </p>';
 	
-$PTG_lng['admin_allcodes']		= 'Zugriffscodes';
-$PTG_lng['vfalkenhahn'] 		= 'vfalkenhahn.de';
-$PTG_lng['error_403']			= 'Die angeforderte URL ist geschützt:';
-$PTG_lng['error_404']			= 'Die angeforderte URL wurde nicht gefunden:';
-$PTG_lng['error_500']			= 'Unerwarteter Serverfehler:';
-$PTG_lng['error_back']			= 'Zurück zur Homepage:';
+$TTPDS_lng['admin_allcodes']		= 'Zugriffscodes';
+$TTPDS_lng['vfalkenhahn'] 		= 'vfalkenhahn.de';
+$TTPDS_lng['error_403']			= 'Die angeforderte URL ist geschützt:';
+$TTPDS_lng['error_404']			= 'Die angeforderte URL wurde nicht gefunden:';
+$TTPDS_lng['error_500']			= 'Unerwarteter Serverfehler:';
+$TTPDS_lng['error_back']			= 'Zurück zur Homepage:';
 
 ?>
