@@ -1,4 +1,0 @@
-# .htaccess for tt-pds
-Options All -Indexes
-ErrorDocument 403 /template/error.php
-ErrorDocument 404 /template/error.php
