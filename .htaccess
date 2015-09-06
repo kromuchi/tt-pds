@@ -3,7 +3,16 @@ Options All -Indexes
 ErrorDocument 403 /template/error.php
 ErrorDocument 404 /template/error.php
 
-#Prevent viewing .htaccess and config files
+# deny direct access to all files except index.php, error.php and filetypes *.css, *.js and *.png
+order allow,deny
+<FilesMatch "^((index|error)\.php)?$">
+    allow from all
+</FilesMatch>
+<FilesMatch "\.(css|png|js)$">
+	Order Deny,Allow
+    Allow from all
+</FilesMatch>
+# Prevent viewing .htaccess and config files
 <FilesMatch ".htaccess|config">
 	order allow,deny
 	deny from all
