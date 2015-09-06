@@ -3,11 +3,13 @@ A tiny tiny photo distribution server.
 
 ## Description
 
-(...)
+This small php-project allowes the distribution of files (initially photo archives) to friends.
 
 ## Installation & Setup
 
-customize via /data/data.php
+customize file settings
+ * config.php: global settings
+ * data/data.php: access to photo/data directories
 
 ## ToDo
 
@@ -15,6 +17,5 @@ customize via /data/data.php
 
 ## Changelog
 
+2015-09-05 htaccess file added / folder structure enhanced
 2015-09-04 first release
-
-2015-09-04 htaccess file added / folder structure enhanced
