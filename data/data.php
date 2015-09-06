@@ -1,5 +1,7 @@
 <?php if(!defined('TTPDS_DIR')){ header("Location: http://".$_SERVER['HTTP_HOST']); exit; }
 
+// F O L D E R   D A T A
+
 $TTPDS_galleries = array(
 
 	/* // E X S A M P L E   S T R U C T U R E
