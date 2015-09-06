@@ -17,3 +17,9 @@ order allow,deny
 	order allow,deny
 	deny from all
 </FilesMatch>
+
+# Prevent code injection: http://blogs.interdose.com/dominik/2008/03/20/sicherer-php-code-php-code-injection-verhindern/
+RewriteEngine on
+RewriteCond %{QUERY_STRING} http[:%] [NC]
+RewriteRule .* /--http-- [F,NC]
+RewriteRule http: /--http-- [F,NC]
