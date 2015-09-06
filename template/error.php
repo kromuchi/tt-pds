@@ -16,6 +16,7 @@ parse_str(isset($uri_parts[1]) ? $uri_parts[1] : "", $output_get);
 $acc = getargfrom('acc',$output_get);
 $lang = getargfrom('lang',$output_get);
 
+
 asort($TTPDS_langs);
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
 switch($lang){
@@ -69,7 +70,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
   
 <head>
 <title><?php echo $error_code; ?></title>
-<link rel='stylesheet' type='text/css' href='<?php echo 'master.css'; ?>'/>
+<link rel='stylesheet' type='text/css' href='<?php echo ('http://' . TTPDS_URL . '/template/master.css'); ?>'/>
 <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
 </head>
 <body>
