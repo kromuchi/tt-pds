@@ -24,8 +24,8 @@ switch($lang){
 		$lang = 'en';
 }
 
-include($TTPDS_datafolder . '/' . 'data.php');
-asort($TTPDS_galleries);
+include(TTPDS_DIR . '/' . $TTPDS_datafolder . '/' . 'data.php');
+ksort($TTPDS_galleries); # http://php.net/manual/de/array.sorting.php
 $mode = "default";
 if(!isset($TTPDS_keys_maxlen)){ // if not set by user
 	$TTPDS_keys_maxlen = 0;
