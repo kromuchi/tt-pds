@@ -1,29 +1,32 @@
 <?php
-define('TTPDS_URL',$_SERVER['HTTP_HOST'] );
-define('TTPDS_DIR',$_SERVER['DOCUMENT_ROOT'] );
-include(TTPDS_DIR . 'config.php');
-include(TTPDS_DIR . 'inc/lang.php');
-include(TTPDS_DIR . 'inc/files.php');
-include(TTPDS_DIR . 'inc/browserargs.php');
+$parts = explode('/', dirname($_SERVER['SCRIPT_NAME']));
+array_pop($parts);
+$parentpath = implode('/', $parts);
+define('TTPDS_URL',$_SERVER['HTTP_HOST'] . $parentpath); // script url
+define('TTPDS_DIR',$_SERVER['DOCUMENT_ROOT'] . $parentpath);  // script directory
+include(TTPDS_DIR . '/config.php');
+include(TTPDS_DIR . '/inc/lang.php');
+include(TTPDS_DIR . '/inc/files.php');
+include(TTPDS_DIR . '/inc/browserargs.php');
 
 // Parsing arguments manually as $_GET is not working due to htaccess redirect
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$page_redirected_from = 'http://' .TTPDS_URL . $uri_parts[0];
-parse_str($uri_parts[1], $output_get);
-$acc  = (isset($output_get['acc'])  ? $output_get['acc']  : "");
-$lang = (isset($output_get['lang']) ? $output_get['lang'] : "");
+$page_redirected_from = 'http://' .TTPDS_URL . substr($uri_parts[0],strlen($parentpath));
+parse_str(isset($uri_parts[1]) ? $uri_parts[1] : "", $output_get);
+$acc = getargfrom('acc',$output_get);
+$lang = getargfrom('lang',$output_get);
 
 asort($TTPDS_langs);
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
 switch($lang){
 	case 'de':
-		include (TTPDS_DIR . 'lang/de.php');
+		include (TTPDS_DIR . '/lang/de.php');
 		break;
 	case 'en':
-		include (TTPDS_DIR . 'lang/en.php');
+		include (TTPDS_DIR . '/lang/en.php');
 		break;
 	default: // 'en'
-		include (TTPDS_DIR . 'lang/en.php');
+		include (TTPDS_DIR . '/lang/en.php');
 		$lang = 'en';
 }
 
@@ -66,7 +69,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
   
 <head>
 <title><?php echo $error_code; ?></title>
-<link rel='stylesheet' type='text/css' href='<?php echo '/template/master.css'; ?>'/>
+<link rel='stylesheet' type='text/css' href='<?php echo 'master.css'; ?>'/>
 <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
 </head>
 <body>
@@ -93,7 +96,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
 	</div></div>
 	<ul class='links'>
 		<?php 
-		echo("<li><a href=\"http://" . TTPDS_URL . "?" . $linkstr."&t=help\">" . $TTPDS_lng['title_home'] . "</a></li>
+		echo('<li><a href="http://' . TTPDS_URL . "?" . $linkstr.'&t=help">' . $TTPDS_lng['title_home'] . "</a></li>
 		<br />");
 		?>
 	</ul>

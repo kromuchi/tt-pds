@@ -3,7 +3,7 @@
 function getFiles($relpath){
 	if(is_dir($relpath)){
 		$files = array();
-		$abspath = TTPDS_DIR . $relpath;
+		$abspath = TTPDS_DIR . '/' . $relpath;
 		
 		$hndlProcessingDir = opendir($relpath);			
 		if($hndlProcessingDir) {
@@ -26,7 +26,7 @@ function sendFile($relpath, $fileindex){
 	$filelist = getFiles($relpath);
 	$filename = $filelist[$fileindex]['name'];
 	
-	$strFilepath = TTPDS_DIR . $relpath . "/" . $filename;
+	$strFilepath = TTPDS_DIR . "/" . $relpath . "/" . $filename;
 	
 	$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type extension
 	$mime = finfo_file($finfo, $strFilepath);
@@ -43,11 +43,12 @@ function sendFile($relpath, $fileindex){
 		header('Content-Length: ' . $filelist[$fileindex]['size']);
 		
 		readfile($strFilepath);
+		exit(); // needed to prevent html buffer not to be attached to file
 	}
 }
 
 function formatBytes($bytes, $precision = 2) {
-	$base = 1024; // 1000
+	$base = 1024; # 1000
 	
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
   

@@ -2,3 +2,9 @@
 Options All -Indexes
 ErrorDocument 403 /template/error.php
 ErrorDocument 404 /template/error.php
+
+#Prevent viewing .htaccess and config files
+<FilesMatch ".htaccess|config">
+	order allow,deny
+	deny from all
+</FilesMatch>

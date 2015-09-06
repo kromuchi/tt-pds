@@ -1,25 +1,26 @@
 <?php
-define('TTPDS_URL',$_SERVER['HTTP_HOST'] );
-define('TTPDS_DIR',$_SERVER['DOCUMENT_ROOT'] );
+define('TTPDS_URL',$_SERVER['HTTP_HOST'] . (dirname($_SERVER['SCRIPT_NAME']) == "\\" ? "" : dirname($_SERVER['SCRIPT_NAME']))); // script url
+define('TTPDS_DIR',$_SERVER['DOCUMENT_ROOT'] . (dirname($_SERVER['SCRIPT_NAME']) == "\\" ? "" : dirname($_SERVER['SCRIPT_NAME'])) );  // script directory
 $hostinfo = explode('.',$_SERVER['HTTP_HOST']); 
-define('TTPDS_ROOT',($hostinfo[0]=="localhost" ? $hostinfo[0] : $hostinfo[1].".".$hostinfo[2]));
-include(TTPDS_DIR . 'config.php');
-include(TTPDS_DIR . 'inc/lang.php');
-include(TTPDS_DIR . 'inc/files.php');
-include(TTPDS_DIR . 'inc/browserargs.php');
+define('TTPDS_ROOT',($hostinfo[0]=="localhost" ? $hostinfo[0] : $hostinfo[1].".".$hostinfo[2])); // root URL
+if(!file_exists('./config.php')) die('faulty setup of tt-pds: https://github.com/kromuchi/tt-pds');
+include(TTPDS_DIR . '/config.php'); 
+include(TTPDS_DIR . '/inc/lang.php');
+include(TTPDS_DIR . '/inc/files.php');
+include(TTPDS_DIR . '/inc/browserargs.php');
 
 asort($TTPDS_langs);
 $lang = getarg("lang");
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
 switch($lang){
 	case 'de':
-		include (TTPDS_DIR . 'lang/de.php');
+		include (TTPDS_DIR . '/lang/de.php');
 		break;
 	case 'en':
-		include (TTPDS_DIR . 'lang/en.php');
+		include (TTPDS_DIR . '/lang/en.php');
 		break;
 	default: // 'en'
-		include (TTPDS_DIR . 'lang/en.php');
+		include (TTPDS_DIR . '/lang/en.php');
 		$lang = 'en';
 }
 
