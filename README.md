@@ -14,8 +14,15 @@ customize file settings
 ## ToDo
 
  * specify custom links in data file
+ * htaccess: block external access to \inc, \lang and \data
 
 ## Changelog
 
-2015-09-05 htaccess file added / folder structure enhanced
-2015-09-04 first release
+ * v0.02 (not released yet)
+   * htaccess file blocking config files
+   * new config.php file
+   * fix for sending text files
+   * fixed handling of paths: project can be placed in subdirectory
+   * custom error page
+   * new example files
+ * v0.01 (2015-09-04) first release
