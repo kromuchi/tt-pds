@@ -25,12 +25,11 @@ Example URLs for index.php (with example data in data/)
 ## ToDo
 
  * specify custom links in data file
- * htaccess: block external access to \inc, \lang and \data
 
 ## Changelog
 
- * v0.02 (not released yet)
-   * htaccess file blocking config files
+ * v0.02 (2015-09-06)
+   * htaccess blocks all files from external, except index.php, error.php and (css|js|png) files
    * new config.php file
    * fix for sending text files
    * fixed handling of paths: project can be placed in subdirectory
