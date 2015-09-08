@@ -27,7 +27,8 @@ Example URLs for index.php (with example data in data/)
  * specify custom links in data file
 
 ## Changelog
-
+ * v0.03 (2015-09-08)
+   * Prevent code injection via function arguments
  * v0.02 (2015-09-06)
    * htaccess blocks all files from external, except index.php, error.php and (css|js|png) files
    * new config.php file
