@@ -13,8 +13,8 @@ include(TTPDS_DIR . '/inc/browserargs.php');
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
 $page_redirected_from = 'http://' .TTPDS_URL . substr($uri_parts[0],strlen($parentpath));
 parse_str(isset($uri_parts[1]) ? $uri_parts[1] : "", $output_get);
-$acc = getargfrom('acc',$output_get);
-$lang = getargfrom('lang',$output_get);
+$acc  = filter_url(getargfrom('acc', $output_get));
+$lang = filter_url(getargfrom('lang',$output_get));
 
 
 asort($TTPDS_langs);
