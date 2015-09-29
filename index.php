@@ -178,8 +178,10 @@ echo("<div class='hspacer'>&nbsp;</div><span class='corners-bottom'><span></span
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
 &copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : 
-TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng[
+TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng[
 'title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div></body></html>
+
+<!-- tt-pds  //  https://github.com/kromuchi/tt-pds -->
