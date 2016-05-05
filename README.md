@@ -3,24 +3,22 @@ A tiny tiny photo distribution server.
 
 ## Description
 
-This small php-project allowes the distribution of files (initially photo archives) to friends. Access is provided via url and keys tokens. 
+This small php-project allowes the distribution of files (initially photo archives) to friends. Access is provided via url and key tokens.
  
-Supported languages:
- * english (en)
- * german (de)
+Supported languages: `english (en)` | `german (de)`
  
 ## Installation & Setup
 
 Customize settings using the following files:
- * config.php: global settings
- * data/data.php: access to photo/data directories
+ * `config.php`: global settings
+ * `data/data.php`: access to photo/data directories
  
 #### Examples
 
-Example URLs for index.php (with example data in data/)
- * admin view: ?admin=getallaccesscodes&mkey=somerandombutcomplexmasterkey
- * user view (files in exampledir1): ?acc=complexsamplekey
- * user view (files in exampledir1 and exampledir2): ?acc=anotherkeycomplexsamplekey
+Example URLs for `index.php` (with example data in `data/`)
+ * admin view: `?admin=get_all_access_codes&mkey=some_random_but_complex_master_key`
+ * user view (files in exampledir1): `?acc=complex_sample_key`
+ * user view (files in exampledir1 and exampledir2): `?acc=another_complex_sample_key`
 
 ## ToDo
 
