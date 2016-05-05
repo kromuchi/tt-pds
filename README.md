@@ -17,8 +17,8 @@ Customize settings using the following files:
 
 Example URLs for `index.php` (with example data in `data/`)
  * admin view: `?admin=get_all_access_codes&mkey=some_random_but_complex_master_key`
- * user view (files in exampledir1): `?acc=complex_sample_key`
- * user view (files in exampledir1 and exampledir2): `?acc=another_complex_sample_key`
+ * user view (files in `exampledir1/`): `?acc=complex_sample_key_`
+ * user view (files in `exampledir1/` and `exampledir2`): `?acc=complex_sample_key_another_sample_key`
 
 ## ToDo
 
