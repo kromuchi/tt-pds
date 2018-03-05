@@ -9,13 +9,13 @@ order allow,deny
     allow from all
 </FilesMatch>
 <FilesMatch "\.(css|png|js)$">
-	Order Deny,Allow
+    Order Deny,Allow
     Allow from all
 </FilesMatch>
 # Prevent viewing .htaccess and config files
 <FilesMatch ".htaccess|config">
-	order allow,deny
-	deny from all
+    order allow,deny
+    deny from all
 </FilesMatch>
 
 # Prevent code injection: http://blogs.interdose.com/dominik/2008/03/20/sicherer-php-code-php-code-injection-verhindern/
@@ -23,3 +23,8 @@ RewriteEngine on
 RewriteCond %{QUERY_STRING} https?[:%] [NC]
 RewriteRule .* /--http-- [F,NC]
 RewriteRule http: /--http-- [F,NC]
+
+# Force HTTPS (uncomment to force SSL)
+# RewriteEngine on
+# RewriteCond %{HTTPS} !on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [NE,R]
