@@ -27,4 +27,4 @@ RewriteRule http: /--http-- [F,NC]
 # Force HTTPS (uncomment to force SSL)
 # RewriteEngine on
 # RewriteCond %{HTTPS} !on
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L, NE,R]
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,NE,R]
