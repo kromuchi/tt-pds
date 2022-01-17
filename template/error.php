@@ -13,11 +13,10 @@ include(TTPDS_DIR . '/inc/browserargs.php');
 
 // Parsing arguments manually as $_GET is not working due to htaccess redirect
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$page_redirected_from = 'http://' .TTPDS_URL . substr($uri_parts[0],strlen($parentpath));
+$page_redirected_from = 'https://' .TTPDS_URL . substr($uri_parts[0],strlen($parentpath));
 parse_str(isset($uri_parts[1]) ? $uri_parts[1] : "", $output_get);
 $acc  = filter_url(getargfrom('acc', $output_get));
 $lang = filter_url(getargfrom('lang',$output_get));
-
 
 asort($TTPDS_langs);
 if($lang == "" || !in_array($lang, $TTPDS_langs)) $lang = prefered_language($TTPDS_langs);
@@ -99,7 +98,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
 	</div></div>
 	<ul class='links'>
 		<?php 
-		echo('<li><a href="http://' . TTPDS_URL . "?" . $linkstr.'&t=help">' . $TTPDS_lng['title_home'] . "</a></li>
+		echo('<li><a href="https://' . TTPDS_URL . "?" . $linkstr.'&t=help">' . $TTPDS_lng['title_home'] . "</a></li>
 		<br />");
 		?>
 	</ul>
@@ -118,9 +117,11 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
 &copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : 
-TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
+TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='https://" . TTPDS_URL . "?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div>
 </body>
 </html>
+
+<!-- tt-pds  //  https://github.com/kromuchi/tt-pds -->
