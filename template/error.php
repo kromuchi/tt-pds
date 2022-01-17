@@ -2,6 +2,8 @@
 $parts = explode('/', dirname($_SERVER['SCRIPT_NAME']));
 array_pop($parts);
 $parentpath = implode('/', $parts);
+$hostinfo = explode('.',$_SERVER['HTTP_HOST']); 
+define('TTPDS_ROOT',($hostinfo[0]=="localhost" ? $hostinfo[0] : $hostinfo[1].".".$hostinfo[2])); // root URL
 define('TTPDS_URL',$_SERVER['HTTP_HOST'] . $parentpath); // script url
 define('TTPDS_DIR',$_SERVER['DOCUMENT_ROOT'] . $parentpath);  // script directory
 include(TTPDS_DIR . '/config.php');
@@ -70,7 +72,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
   
 <head>
 <title><?php echo $error_code; ?></title>
-<link rel='stylesheet' type='text/css' href='<?php echo ('http://' . TTPDS_URL . '/template/master.css'); ?>'/>
+<link rel='stylesheet' type='text/css' href='<?php echo ('https://' . TTPDS_URL . '/template/master.css'); ?>'/>
 <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
 </head>
 <body>
@@ -116,8 +118,7 @@ header($_SERVER["SERVER_PROTOCOL"] . ' ' . $error_code);
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
 &copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : 
-$TTPDS_lng['vfalkenhahn']); echo $cr;?>"><?php echo $cr;?></a> &ndash; <?php echo "<a href=\"http://" . TTPDS_URL . "?" . $linkstr.
-"&t=disclaimer\">" . $TTPDS_lng['title_disclaimer'] . "</a>"; ?>
+TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
 </div></div>
