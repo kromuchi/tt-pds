@@ -78,10 +78,13 @@ if($t == 'help'){
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $TTPDS_lng['xml-lang']; ?>" lang="<?php echo $TTPDS_lng['lang']; ?>">
   
-<head><title><?php echo $TTPDS_lng['title']; ?></title>
+<head>
+<title><?php echo $TTPDS_lng['title']; ?></title>
 <link rel='stylesheet' type='text/css' href='template/master.css'/>
 <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
-</head><body><div class='page_margins'><div class='page'>
+</head>
+<body>
+<div class='page_margins'><div class='page'>
 <div id='main'><div id='col1'><div id='col1_content' class='clearfix'>
 <div id='menubar'><span class='corners-top'><span></span></span>
 	<?php /**************** MENU ****************/ ?>
@@ -178,10 +181,11 @@ echo("<div class='hspacer'>&nbsp;</div><span class='corners-bottom'><span></span
 <div id='ie_clearing'> &#160; </div></div></div>
 <div id='footer'><span class='corners-top'><span></span></span>
 &copy; <?php echo date('Y'); ?> by <a href="http://<?php $cr = (strlen($TTPDS_extra_copyright) > 0 ? $TTPDS_extra_copyright : 
-TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng[
-'title_disclaimer'] . "</a>"); ?>
+TTPDS_ROOT); echo $cr; ?>"><?php echo $cr; ?></a> &amp; <a href="https://github.com/kromuchi/tt-pds" target="_blank" title="tt-pds">tt-pds</a> &ndash; <?php echo("<a href='?" . $linkstr . "&t=disclaimer'>" . $TTPDS_lng['title_disclaimer'] . "</a>"); ?>
 <span class='corners-bottom'><span></span></span></div>
 <div class='hspacer'>&nbsp;</div>
-</div></div></body></html>
+</div></div>
+</body>
+</html>
 
 <!-- tt-pds  //  https://github.com/kromuchi/tt-pds -->
